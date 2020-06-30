@@ -1,0 +1,64 @@
+.label-custom{
+        text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: 14px;
+    color: #606266;
+    line-height: 40px;
+    padding: 0 12px 0 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-title{
+    font-size: 30px;
+     text-align: center;
+    padding: 30px;
+    /*font-weight: bold;*/
+}
+.form-session-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.el-form{
+    padding: 40px;
+}
+
+  .staff-row {
+      text-align: center;
+  }
+
+  .staff-col {
+      text-align: center;
+  }
+
+  .entry_3 {
+    margin-top: 20px;
+      margin-bottom: 20px;
+  }
+  .after_checkbox {
+      width: 30px;
+  }
+
+label {
+        font-size: 14px;
+    color: #606266;
+}
+
+table.eth-table  tr td {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    border: 1px solid #807c7c;
+    /* border-collapse: collapse; */
+}
+
+td {
+    min-width: 80px;
+}
+
+table.eth-table td:first-child {
+    text-align: start;
+    width: 260px;
+}

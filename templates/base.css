@@ -1,0 +1,53 @@
+
+
+  .el-header{
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+
+    border-bottom: 1px solid #eee;
+  }
+   .el-footer {
+    color: #333;
+    padding:0px;
+    margin:0px;
+    text-align: center;
+    line-height: 40px;
+    font-size:10px;
+/*     height:20px; */
+/*     background-color: #B3C0D1; */
+    border-top: 1px solid rgb(220,223,230)
+  }
+
+html,body,#app,.el-container{
+
+        padding: 0px;
+
+        margin: 0px;
+
+        height: 100%;
+    }
+    .el-main{
+      margin: 0px;
+      padding: 0px;
+
+    }
+      .aside {
+        background-color: rgb(238, 241, 246);
+        overflow-y:auto;
+        min-height:100%;
+        height:calc(100% - 120px);
+    height:100%; */
+     width: 200px;
+    color: #333;
+        margin:0px;
+            padding:0px;
+    position: relative;
+
+  }
+  .header-text{
+    font-size:30px;
+    color:darkblue;
+    text-align:left;
+    margin-left:10;
+  }

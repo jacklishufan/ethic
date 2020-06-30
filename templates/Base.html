@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动物伦理管理系统</title>
+</head>
+<body>
+{% load static %}
+<div id="app">
+    <template v-loading="loading">
+
+        <el-container class="main-window">
+            <el-header height="80px">
+                <div class="header-text">
+                    <i class="el-icon-s-help"></i>
+                    动物伦理管理系统
+                </div>
+
+                <el-dropdown>
+                        <span class="el-dropdown-link">
+                            <img src="" alt="">
+                        </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>退出登录</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+
+            </el-header>
+            <el-main direction="horizontal">
+                    <el-container direction="horizontal">
+                <el-aside span="8" class="aside">
+                    <navigation></navigation>
+                </el-aside>
+                <el-main direction="horizontal">
+                    <div>
+
+                    </div>
+                    <ethic-form></ethic-form>
+                </el-main>
+                        </el-container>
+            </el-main>
+            </el-aside>
+            <el-footer height="40px">@2020 Maintained by Jack Li
+            </el-footer>
+        </el-container>
+    </template>
+</div>
+
+
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" href="{% static "base.css" %}">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<link rel="import" href="static/navigation.html" id="navigation-html">
+<script src="{% static "navigation.js" %}"></script>
+<script src="{% static "form.js" %}"></script>
+<script type="module">
+    var app = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            message: 'Hello Vue!',
+            user: {
+                name: "李建民",
+                institutional_admin: true,
+                provincial_admin: true,
+            },
+            school: {
+                name: "南京医科大学"
+            },
+            province: {
+                name: "江苏省"
+            }
+        },
+    })
+</script>
+
+</html>

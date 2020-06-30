@@ -1,0 +1,933 @@
+<div>
+
+
+    <el-form :model="ethic_form_data" :rules="ethic_rules" ref="ruleForm" label-width="auto">
+        <div class="form-title">实验动物福利伦理审查表</div>
+        <div class="form-session-title">一、申请者基本情况</div>
+        <div>
+
+            <el-form-item
+                    prop="protocal_title_cn"
+                    label="实验名称"
+            >
+                <el-input v-model="ethic_form_data.protocal_title_cn"></el-input>
+            </el-form-item>
+            <el-form-item
+                    prop="protocal_title_en"
+                    label="Protocal Name"
+            >
+                <el-input v-model="ethic_form_data.protocal_title_en"></el-input>
+            </el-form-item>
+            <el-row :gutter="20">
+                <el-col :span="12">
+                    <el-form-item
+                            prop="fund_source_cn"
+                            label="项目来源及编号"
+                    >
+                        <el-input v-model="ethic_form_data.fund_source_cn"></el-input>
+                    </el-form-item>
+                    <el-form-item
+                            prop="fund_source_en"
+                            label="Fund Source"
+                    >
+                        <el-input v-model="ethic_form_data.fund_source_en"></el-input>
+                    </el-form-item>
+
+
+                </el-col>
+                <el-col :span="12">
+                    <el-row>
+                        </el-form-item>
+                        <el-form-item
+                                prop="fund_source_en"
+                                label="拟实验时间"
+                        >
+                            <el-col :span="11">
+                                <el-date-picker type="date" placeholder="选择日期" v-model="ethic_form_data.period_start"
+                                                style="width: 100%;"></el-date-picker>
+                            </el-col>
+                            <el-col class="line" :span="2">-</el-col>
+                            <el-col :span="11">
+                                <el-date-picker type="date" placeholder="选择日期" v-model="ethic_form_data.period_end"
+                                                style="width: 100%;"></el-date-picker>
+
+                            </el-col>
+
+                        </el-form-item>
+                        <div style="width:120px">
+                            <label class="el-form-item__label">
+                                Period of Protocol
+                            </label>
+                        </div>
+                    </el-row>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="12">
+                    <el-form-item
+                            prop="applicant_cn"
+                            label="申请人姓名"
+                    >
+                        <el-input v-model="ethic_form_data.applicant_cn"></el-input>
+                    </el-form-item>
+                    <el-form-item
+                            prop="applicant_en"
+                            label="Applicant"
+                    >
+                        <el-input v-model="ethic_form_data.applicant_en"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                    <el-col :span=12>
+                        <el-form-item
+                                prop="protocal_title_en"
+                                label="职称/学位"
+                        >
+                            <el-input v-model="ethic_form_data.applicant_title_cn"></el-input>
+                        </el-form-item>
+                        <el-form-item
+                                prop="protocal_title_en"
+                                label="Title/Degree"
+                        >
+                            <el-input v-model="ethic_form_data.applicant_title_en"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span=12>
+                        <el-form-item
+                                prop="applicant_en"
+                                label="Tel"
+                        >
+                            <el-input v-model="ethic_form_data.applicant_tel"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-col>
+            </el-row>
+            <el-row type="flex" align="middle">
+                <el-col :span="12">
+                    <el-form-item
+                            prop="app_department_cn"
+                            label="院系（部门">
+                        <el-input v-model="ethic_form_data.app_department_cn"></el-input>
+                    </el-form-item>
+                    <el-form-item
+                            prop="app_department_en"
+                            label="Department">
+                        <el-input v-model="ethic_form_data.app_department_en"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                    <el-form-item style="vertical-align: middle;"
+                                  prop="applicant_email"
+                                  label="Email">
+                        <el-input v-model="ethic_form_data.applicant_email"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+            <el-row>
+                <el-col :span="12">
+                    <el-form-item
+                            prop="principle_investigator_title_cn"
+                            label="实验负责人"
+                    >
+                        <el-input v-model="ethic_form_data.principle_investigator_title_cn"></el-input>
+                    </el-form-item>
+                    <el-form-item
+                            prop="principle_investigator_en"
+                            label="Principle Investigator"
+                    >
+                        <el-input v-model="ethic_form_data.principle_investigator_en"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                    <el-col :span=12>
+                        <el-form-item
+                                prop="principle_investigator_title_cn"
+                                label="职称/学位"
+                        >
+                            <el-input v-model="ethic_form_data.principle_investigator_title_cn"></el-input>
+                        </el-form-item>
+                        <el-form-item
+                                prop="principle_investigator_title_en"
+                                label="Title/Degree"
+                        >
+                            <el-input v-model="ethic_form_data.principle_investigator_title_en"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span=12>
+                        <el-form-item
+                                prop="principle_investigator_tel"
+                                label="Tel"
+                        >
+                            <el-input v-model="ethic_form_data.principle_investigator_tel"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-col>
+            </el-row>
+            <el-row type="flex" align="middle">
+                <el-col :span="12">
+                    <el-form-item
+                            prop="principle_investigator_department_cn"
+                            label="院系（部门">
+                        <el-input v-model="ethic_form_data.principle_investigator_department_cn"></el-input>
+                    </el-form-item>
+                    <el-form-item
+                            prop="principle_investigator_department_en"
+                            label="Department">
+                        <el-input v-model="ethic_form_data.principle_investigator_department_en"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                    <el-form-item style="vertical-align: middle;"
+                                  prop="principle_investigator_email"
+                                  label="Email">
+                        <el-input v-model="ethic_form_data.principle_investigator_email"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+        </div>
+        <div>
+            <div class="form-session-title">二、实验人员（没有资格证号不予受理）</div>
+            <el-row :gutter="0">
+                <el-col :span="2">
+                    <label class="el-form-item__label">人员</label>
+                </el-col>
+                <el-col :span="4">
+                    <label class="el-form-item__label">实验执行人</label>
+                </el-col>
+                <el-col :span="4">
+                    <label class="el-form-item__label"> 职称/学位</label>
+                </el-col>
+                <el-col :span="4">
+                    <label class="el-form-item__label"> 动物实验资格证编号</label>
+                </el-col>
+                <el-col :span="4">
+                    <label class="el-form-item__label">电话</label>
+                </el-col>
+                <el-col :span="4">
+                    <label class="el-form-item__label">Email</label>
+                </el-col>
+            </el-row>
+            <el-row
+                    v-for="(participant,index) in ethic_form_data.staff"
+                    :key="participant.key"
+                    :gutter="0"
+                    class="staff-row"
+            >
+                <el-col :span='2' class="staff-col">
+                    <label class="el-form-item__label">人员[[index+1]]</label>
+                </el-col>
+                <el-col :span='4'>
+                    <el-form-item label-width="0px"
+                                  :prop="'staff.' +index +'.name'"
+                    >
+                        <el-input v-model="participant.name"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span='4' style="padding: 0px">
+                    <el-form-item label-width="0px"
+                                  :prop="'staff.' +index +'.title'"
+                    >
+                        <el-input v-model="participant.title"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span='4'>
+                    <el-form-item label-width="0px"
+                                  :prop="'staff.' +index +'.certificate'"
+                    >
+                        <el-input v-model="participant.certificate"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span='4'>
+                    <el-form-item label-width="0px"
+                                  :prop="'staff.' +index +'.tel'"
+                    >
+                        <el-input v-model="participant.tel"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span='4'>
+                    <el-form-item label-width="0px"
+                                  :prop="'staff.' +index +'.email'"
+                    >
+                        <el-input v-model="participant.email"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span='2'>
+
+                    <el-button @click.prevent="removeStaff(participant)">删除</el-button>
+
+                </el-col>
+            </el-row>
+            <el-row style="padding: 0px;text-align: center;">
+                <el-button @click.prevent="addStaff()">Add</el-button>
+            </el-row>
+        </div>
+        <div style="padding-top: 20px">
+            <div class="form-session-title">三、课题概述</div>
+            <div class="entry_3">3.1 本研究的目的、内容、意义，动物实验的目的、拟解决问题和实验策略（以非专业语言简述）（≤1000字）</div>
+            <el-input
+                    type="textarea"
+                    :rows="10"
+                    placeholder="请输入内容"
+                    v-model="ethic_form_data.text_3_1">
+            </el-input>
+            <div class="entry_3">3.2 主要参考文献（≤5篇）（≤1000字）</div>
+            <el-input
+                    type="textarea"
+                    :rows="10"
+                    placeholder="请输入内容"
+                    v-model="ethic_form_data.text_3_2">
+            </el-input>
+            <div class="entry_3">3.3 本项目是否与已通过审查的项目相关联（重复或类同）？如果有，具体的项目名称与受理号并附加说明：（≤1000字）</div>
+            <el-input
+                    type="textarea"
+                    :rows="10"
+                    placeholder="请输入内容"
+                    v-model="ethic_form_data.text_3_3">
+            </el-input>
+        </div>
+        <div>
+            <div class="form-session-title">四、动物信息</div>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 使用动物来源 </label>
+                </el-col>
+                <el-col :span="20">
+                    <el-row v-for="(item,index) in ethic_form_data.check_box_4_1" :key="item.title">
+                        <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                        <el-input v-model="item.text" style="width: 180px;" size="mini"
+                                  :disabled="!item.checked"></el-input>
+                    </el-row>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 质量合格证 </label>
+                </el-col>
+                <el-col :span="20">
+                    <el-radio v-model="ethic_form_data.check_box_4_2" label="1">有</el-radio>
+                    <el-radio v-model="ethic_form_data.check_box_4_2" label="2">无</el-radio>
+                </el-col>
+            </el-row>
+
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 品种、品系 </label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-row v-for="(item,index) in ethic_form_data.check_box_4_3" :key="item.title">
+                        <el-radio v-model="ethic_form_data.check_box_4_3_main" :label="item.title" style="width: 150px">
+                            [[item.title]]
+                        </el-radio>
+                        <el-input v-model="item.text" style="width: 180px;" size="mini"
+                                  :disabled="!(ethic_form_data.check_box_4_3_main===item.title)"></el-input>
+                    </el-row>
+                </el-col>
+            </el-row>
+
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 等级</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-row v-for="(item,index) in ethic_form_data.check_box_4_4" :key="item.title">
+                        <el-radio v-model="ethic_form_data.check_box_4_4_main" :label="item.title" style="width: 150px">
+                            [[item.title]]
+                        </el-radio>
+                    </el-row>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 数量</label>
+                </el-col>
+                <el-col :span="20">
+                    <label>♂</label>
+
+                    <el-input v-model="ethic_form_data.count_4_6.male" style="width: 60px;" size="mini"></el-input>
+                    <label>♀</label>
+                    <el-input v-model="ethic_form_data.count_4_6.female" style="width: 60px;" size="mini"></el-input>
+
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 周龄</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-input v-model="ethic_form_data.week_4_7" style="width: 60px;" size="mini"></el-input>
+                    <label>W</label>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 饲养设施地点</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-input v-model="ethic_form_data.location_4_8" style="width: 120px;" size="mini"></el-input>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 设施类型</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-row v-for="(item,index) in ethic_form_data.check_box_4_9" :key="item.title">
+                        <el-radio v-model="ethic_form_data.check_box_4_9_main" :label="item.title" style="width: 150px">
+                            [[item.title]]
+                        </el-radio>
+                    </el-row>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 动物使用的理由 </label>
+                </el-col>
+                <el-col :span="20">
+                    <el-row v-for="(item,index) in ethic_form_data.check_box_4_10" :key="item.title">
+                        <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                        <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                                  :disabled="!item.checked"></el-input>
+                    </el-row>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 动物品种选择的理由 </label>
+                </el-col>
+                <el-col :span="20">
+                    <el-row v-for="(item,index) in ethic_form_data.check_box_4_11" :key="item.title">
+                        <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                        <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                                  :disabled="!item.checked"></el-input>
+                    </el-row>
+                </el-col>
+            </el-row>
+            <el-row>
+                <div class="el-form-item__label">动物实验计划、分组、与实验操作（≤1000字）</div>
+                <el-input
+                        type="textarea"
+                        :rows="10"
+                        placeholder="请输入内容"
+                        v-model="ethic_form_data.text_3_2">
+                </el-input>
+            </el-row>
+        </div>
+        <div>
+            <div class="form-session-title">五、实验信息</div>
+            <div class="entry_3">5.1 动物实验主要观察指标（≤1000字）</div>
+            <el-input
+                    type="textarea"
+                    :rows="10"
+                    placeholder="请输入内容"
+                    v-model="ethic_form_data.text_5_1">
+            </el-input>
+
+            <div>
+                <div class="entry_3">5.2 给药方案（包括注射细胞）</div>
+                <el-row :gutter="0">
+                    <el-col :span="2">
+                        <label class="el-form-item__label">药物</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">药名</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">给药剂量</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">给药频率</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">给药途径</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">给药部位</label>
+                    </el-col>
+                </el-row>
+                <el-row
+                        v-for="(participant,index) in ethic_form_data.med_5_2"
+                        :key="participant.key"
+                        :gutter="0"
+                        class="staff-row"
+                >
+                    <el-col :span='2' class="staff-col">
+                        <label class="el-form-item__label">药物[[index+1]]</label>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.name"></el-input>
+                    </el-col>
+                    <el-col :span='4' style="padding: 0px">
+                        <el-input v-model="participant.dose"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.frq"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.apr"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.part"></el-input>
+                    </el-col>
+                    <el-col :span='2'>
+
+                        <el-button @click.prevent="removeItem(participant,ethic_form_data.med_5_2)">删除</el-button>
+
+                    </el-col>
+                </el-row>
+                <el-row style="padding: 0px;text-align: center;">
+                    <el-button @click.prevent="addItemMed(ethic_form_data.med_5_2)">Add</el-button>
+                </el-row>
+            </div>
+
+            <div>
+                <div class="entry_3">5.3 标本采集方案</div>
+                <el-row :gutter="0">
+                    <el-col :span="2">
+                        <label class="el-form-item__label"> 方案</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">采集的组织或体液</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">采集方法</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">数量或体积</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">采集频率</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label"> 持续时间或最大采集数量</label>
+                    </el-col>
+                </el-row>
+                <el-row
+                        v-for="(participant,index) in ethic_form_data.med_5_3"
+                        :key="participant.key"
+                        :gutter="0"
+                        class="staff-row"
+                >
+                    <el-col :span='2' class="staff-col">
+                        <label class="el-form-item__label">方案[[index+1]]</label>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.name"></el-input>
+                    </el-col>
+                    <el-col :span='4' style="padding: 0px">
+                        <el-input v-model="participant.dose"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.frq"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.apr"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.part"></el-input>
+                    </el-col>
+                    <el-col :span='2'>
+
+                        <el-button @click.prevent="removeItem(participant,ethic_form_data.med_5_3)">删除</el-button>
+
+                    </el-col>
+                </el-row>
+                <el-row style="padding: 0px;text-align: center;">
+                    <el-button @click.prevent="addItemMed(ethic_form_data.med_5_3)">Add</el-button>
+                </el-row>
+            </div>
+
+
+            <div class="entry_3">5.4 手术操作描述（≤1000字）</div>
+            <el-input
+                    type="textarea"
+                    :rows="10"
+                    placeholder="请输入内容"
+                    v-model="ethic_form_data.text_5_4">
+            </el-input>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 5px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 术者技术资质</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-input v-model="ethic_form_data.text_5_4_1" style="width: 260px;" size="mini"></el-input>
+                </el-col>
+            </el-row>
+
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 5px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 手术地点</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-input v-model="ethic_form_data.text_5_4_2" style="width: 260px;" size="mini"></el-input>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 5px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 手术后护理</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-input v-model="ethic_form_data.text_5_4_3" style="width: 260px;" size="mini"></el-input>
+                </el-col>
+            </el-row>
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 同一动物上进行多个操作 </label>
+                </el-col>
+                <el-col :span="20">
+                    <el-radio v-model="ethic_form_data.check_box_5_5" label="1">有</el-radio>
+                    <el-radio v-model="ethic_form_data.check_box_5_5" label="2">无</el-radio>
+                </el-col>
+            </el-row>
+
+            <el-row style="vertical-align: middle;display:flex;align-items: center; padding-top: 20px;">
+                <el-col :span="4" style="text-align: right;">
+                    <label class="el-form-item__label" style="float: right;"> 疼痛评价</label>
+                </el-col>
+                <el-col :span="20">
+
+                    <el-row v-for="(item,index) in ethic_form_data.check_box_5_6" :key="item.title">
+                        <el-radio v-model="ethic_form_data.check_box_5_6_main" :label="item.title" style="width: 150px">
+                            [[item.title]]
+                        </el-radio>
+                    </el-row>
+                </el-col>
+            </el-row>
+            <div>
+                <div class="entry_3">5.5 麻醉与镇痛</div>
+                <el-row :gutter="0">
+                    <el-col :span="2">
+                        <label class="el-form-item__label">药物</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">药物名称及浓度</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">给药剂量和频率</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label">给药途径</label>
+                    </el-col>
+                    <el-col :span="4">
+                        <label class="el-form-item__label"> 维持时间</label>
+                    </el-col>
+
+                </el-row>
+                <el-row
+                        v-for="(participant,index) in ethic_form_data.med_5_5"
+                        :key="participant.key"
+                        :gutter="0"
+                        class="staff-row"
+                >
+                    <el-col :span='2' class="staff-col">
+                        <label class="el-form-item__label">方案[[index+1]]</label>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.name"></el-input>
+                    </el-col>
+                    <el-col :span='4' style="padding: 0px">
+                        <el-input v-model="participant.dose"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.frq"></el-input>
+                    </el-col>
+                    <el-col :span='4'>
+                        <el-input v-model="participant.apr"></el-input>
+                    </el-col>
+                    <el-col :span='2'>
+
+                        <el-button @click.prevent="removeItem(participant,ethic_form_data.med_5_5)">删除</el-button>
+
+                    </el-col>
+                </el-row>
+                <el-row style="padding: 0px;text-align: center;">
+                    <el-button @click.prevent="addItemMed2(ethic_form_data.med_5_5)">Add</el-button>
+                </el-row>
+            </div>
+
+
+            <div>
+                <div class="entry_3">5.6 实验动物生命终结标准</div>
+                <el-row v-for="(item,index) in ethic_form_data.check_box_5_7" :key="item.title">
+                    <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                    <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                              :disabled="!item.checked"></el-input>
+                </el-row>
+            </div>
+
+
+            <div>
+                <div class="entry_3">5.7 动物安乐死方法</div>
+                <table class="eth-table" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td>安乐死方法</td>
+                        <td>小于125g 啮齿动物</td>
+                        <td>125g～1kg 啮齿动物/兔</td>
+                        <td>1kg～5kg 啮齿动物/兔</td>
+                        <td>犬</td>
+                        <td>猫</td>
+                        <td>非人灵长类</td>
+                        <td>牛、马、猪</td>
+                        <td>两栖类/鱼类</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_1"
+                                         style="margin-left:10px;width: 180px"> 二氧化碳
+                            </el-checkbox>
+                        </td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_2"
+                                         style="margin-left:10px;width: 180px"> 巴比妥钠静脉注射（100 mg/kg）
+                            </el-checkbox>
+
+                        </td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_3"
+                                         style="margin-left:10px;width: 180px"> 巴比妥钠腹腔注射（100 mg/kg）
+                            </el-checkbox>
+
+                        </td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>X</td>
+                        <td>√</td>
+                        <td>X</td>
+                        <td>√</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_4"
+                                         style="margin-left:10px;width: 180px"> 麻醉后放血致死
+                            </el-checkbox>
+
+                        </td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_5"
+                                         style="margin-left:10px;width: 180px"> 麻醉后静脉注射Kcl（1-2 mg/kg)
+                            </el-checkbox>
+
+                        </td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_6"
+                                         style="margin-left:10px;width: 180px">麻醉后断头
+                            </el-checkbox>
+
+                        </td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>△</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_7"
+                                         style="margin-left:10px;width: 180px">麻醉后颈椎脱位
+                            </el-checkbox>
+
+                        </td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_8"
+                                         style="margin-left:10px;width: 180px">动物清醒中直接断头
+                            </el-checkbox>
+
+                        </td>
+                        <td>△</td>
+                        <td>△</td>
+                        <td>△</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_9"
+                                         style="margin-left:10px;width: 180px">动物清醒中直接颈椎脱位
+                            </el-checkbox>
+
+                        </td>
+                        <td>△</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <el-checkbox v-model="ethic_form_data.table_5_8.obj_10"
+                                         style="margin-left:10px;width: 180px">乙醚
+                            </el-checkbox>
+
+                        </td>
+                        <td>△</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">
+                            表格说明：Y 建议使用之方法；× 不建议使用之方法；△ 说明理由并经动物实验管理委员会审核通过后可使用之方法。
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="entry_3">5.8 用CO2或其他吸入性气体对动物安乐死时，需准备另一种物理方法，在动物无意识的状态下，对其进一步安乐死</div>
+            <el-row v-for="(item,index) in ethic_form_data.check_box_5_9" :key="item.title">
+                <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                          :disabled="!item.checked"></el-input>
+            </el-row>
+
+            <div class="entry_3">5.9 用过剂量的药物（如戊巴比妥）对动物实施安乐死时，在给药10分钟后必须再次检测动物的生命体征。采用以下标准判断动物已死亡</div>
+            <el-row v-for="(item,index) in ethic_form_data.check_box_5_10" :key="item.title">
+                <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                          :disabled="!item.checked"></el-input>
+            </el-row>
+
+            <div class="entry_3">5.10 剩余动物的最终处理</div>
+            <el-row v-for="(item,index) in ethic_form_data.check_box_5_11" :key="item.title">
+                <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                          :disabled="!item.checked"></el-input>
+            </el-row>
+
+            <div class="entry_3">5.11 动物尸体、组织、或体液的最终处理</div>
+            <el-row v-for="(item,index) in ethic_form_data.check_box_5_12" :key="item.title">
+                <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                          :disabled="!item.checked"></el-input>
+            </el-row>
+
+            <div class="entry_3">5.12 动物实验中使用的试剂</div>
+            <el-row v-for="(item,index) in ethic_form_data.check_box_5_13" :key="item.title">
+                <el-checkbox v-model="item.checked" style="width: 180px"> [[item.title]]</el-checkbox>
+                <el-input v-if="item.has_text" v-model="item.text" style="width: 180px;" size="mini"
+                          :disabled="!item.checked"></el-input>
+            </el-row>
+            <div class="entry_3">5.13 如对伦理审查有特殊要求，请说明(例如需要某一委员回避等)（≤1000字）</div>
+            <el-input
+                    type="textarea"
+                    :rows="10"
+                    placeholder="请输入内容"
+                    v-model="ethic_form_data.text_5_14">
+
+
+        </el-input>
+                    </div>
+                        <div>
+            <div class="form-session-title">六、文件上传(pdf)</div>
+<input name="uploadedFile" id="upload_field" class="import_model_file" type="file" accept="application/pdf">
+                            <table class="basic-table form-table">
+	<tbody><tr>
+		<td>
+			<h3 style="text-align:center;">承诺书</h3>
+			<p>我承诺该申请表的内容准确无误。</p>
+			<p>我同意遵守中华人民共和国国家科学技术委员会制定的《实验动物管理条例》、中华人民共和国科学技术部发布的《关于善待实验动物的指导性意见》、江苏省人民政府发布的《江苏省实验动物管理办法》。</p>
+			<p>我承诺该申请表中提及的实验人员，已经参加实验动物的相关培训，掌握了实验中涉及的动物实验方法，并且深知使用这些活体动物及物组织所存在的风险。</p>
+			<p>我将自觉遵守实验动物福利伦理原则，同意接受委员会或实验室管理者的监督与检查。</p>
+			<p>
+				承诺人签字
+			</p>
+			<p>
+				年      月     日
+			</p>
+		</td><td>
+	</td></tr>
+	<tr>
+		<td>
+			<p>南京医科大学实验动物伦理委员会审议结果</p>
+			<p></p>
+			<p>
+				年      月     日
+			</p>
+		</td><td>
+	</td></tr>
+	<tr>
+		<td>
+			<p>备注</p>
+			<p></p>
+		</td><td>
+	</td></tr>
+</tbody></table>
+                </div>
+    </el-form>
+
+    <link rel="stylesheet" href="static/form.css">
+</div>
+
