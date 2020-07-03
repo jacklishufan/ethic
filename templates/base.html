@@ -11,9 +11,14 @@
 
         <el-container class="main-window">
             <el-header height="80px">
-                <div class="header-text">
+                <div class="headet-container">
+                    <div class="header-text">
                     <i class="el-icon-s-help"></i>
                     动物伦理管理系统
+                    </div>
+                    <div class="login-info">
+                        <span>[[ user_data.user.name ]]:</span><a href="/logout">Log Out</a>
+                    </div>
                 </div>
 
                 <el-dropdown>
@@ -29,13 +34,23 @@
             <el-main direction="horizontal">
                     <el-container direction="horizontal">
                 <el-aside span="8" class="aside">
-                    <navigation></navigation>
+                    <navigation :user_data="user_data"></navigation>
                 </el-aside>
                 <el-main direction="horizontal">
-                    <div>
+                <div>
+                    <h4 class="title">
+  {% block header %}
+                        [[page_header]]
+                          {% endblock %}
+                    </h4>
+                </div>
+                            {% block content %}
 
-                    </div>
-                    <ethic-form></ethic-form>
+                    <ethic-form ref="form"></ethic-form>
+                                <div class="button-box">
+                                <button v-on:click="submit()" class="el-button">Submit</button>
+                                </div>
+                            {% endblock %}
                 </el-main>
                         </el-container>
             </el-main>
@@ -50,34 +65,65 @@
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
 <!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <link rel="stylesheet" href="{% static "base.css" %}">
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
-<link rel="import" href="static/navigation.html" id="navigation-html">
+
+{% block script %}
 <script src="{% static "navigation.js" %}"></script>
 <script src="{% static "form.js" %}"></script>
 <script type="module">
+   // const router = new VueRouter({
+   //   routes:[] // (缩写) 相当于 routes: routes
+   // });
     var app = new Vue({
         el: '#app',
         delimiters: ['[[', ']]'],
         data: {
             message: 'Hello Vue!',
-            user: {
-                name: "李建民",
-                institutional_admin: true,
-                provincial_admin: true,
-            },
-            school: {
-                name: "南京医科大学"
-            },
+            user_data:{
+            user: {{user_info|safe}},
             province: {
                 name: "江苏省"
+            }
+            },
+            page_header:"{{ page_header }}"
+        },
+        methods: {
+            submit(){
+                var tdata = JSON.stringify(this.$refs.form.ethic_form_data);
+                var payload = {
+                        data:tdata,
+                    };
+                $.ajax({
+                    method: 'POST',
+                    url: '/api/v1/create_app/',
+                    contentType:'application/json',
+                    headers:{'X-CSRFToken': this.getCookie('csrftoken')},
+                    data: JSON.stringify(payload),
+                    csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val(),
+                    success:(res)=>{
+                        alert('Success');
+                        window.location.href=res.next_page;
+                    }
+                })
+                console.log()
+            },
+             getCookie (name) {
+              var value = '; ' + document.cookie;
+              var parts = value.split('; ' + name + '=')
+              if (parts.length === 2) return parts.pop().split(';').shift()
             }
         },
     })
 </script>
+{% endblock %}
+{% block script_append %}
+
+{% endblock %}
 
 </html>

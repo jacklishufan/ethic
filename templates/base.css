@@ -45,9 +45,34 @@ html,body,#app,.el-container{
     position: relative;
 
   }
+      .headet-container {
+          margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+          align-items:center;
+      }
   .header-text{
+
     font-size:30px;
     color:darkblue;
     text-align:left;
     margin-left:10;
+
   }
+
+  .login-info {
+      align-self: flex-end;
+      flex-flow: initial;
+  }
+
+.title {
+    margin-left: 20px;
+    padding-left: 20px;
+    color: blue;
+    font-size: large;
+}
+
+.button-box {
+    text-align: center;
+    margin-bottom: 30px;
+}

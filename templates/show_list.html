@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="table-container">
+<table id="applist" class="display" style="width: 100%;">
+<thead>
+<th></th>
+<th>Author</th>
+<th>Institution</th>
+<th>Time</th>
+<th>Edited Time</th>
+<th>Title</th>
+<th>Status</th>
+</thead>
+<tfoot>
+<th></th>
+<th>Author</th>
+<th>Institution</th>
+<th>Time</th>
+<th>Edited Time</th>
+<th>Title</th>
+<th>Status</th>
+</tfoot>
+<tbody></tbody>
+</table>
+    </div>
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+
+<script src="{% static "navigation.js" %}"></script>
+<script src="{% static "form.js" %}"></script>
+    <script src="{% static "readlist.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "table.css" %}">
+
+<script type="module">
+
+    var app = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            message: 'Hello Vue!',
+            user_data:{
+            user: {{ user_info|safe }},
+            province: {
+                name: "江苏省"
+            }
+            },
+            scope:"{{ scope }}",
+            mode:"{{ mode }}",
+            status:{{ status }},
+            page_header:"{{ page_header }}",
+
+        },
+        mounted:function(){
+            fetch(this.scope,this.status,this.mode)
+        },
+        methods: {
+             getCookie (name) {
+              var value = '; ' + document.cookie;
+              var parts = value.split('; ' + name + '=')
+              if (parts.length === 2) return parts.pop().split(';').shift()
+            },
+        },
+    })
+</script>
+
+{% endblock %}

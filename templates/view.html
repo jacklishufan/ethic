@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<ethic-form ref="form"
+            :ethic_form_data="ethic_form_data"
+            :permission="permission"
+></ethic-form>
+    <div v-if="permission.edit">
+                    <div class="button-box">
+                                <button v-on:click="update(1)" class="el-button">Update</button>
+                                <button v-on:click="update(2)" class="el-button">Commit</button>
+                    </div>
+    </div>
+    <div v-if="permission.showreview">
+
+
+
+        <div class="table-container">
+                    <div class="table-header">初审结果</div>
+            <table id="reviewlist1" class="display" style="width: 100%;">
+            <thead>
+            <th>Result</th>
+            <th>Reviewer</th>
+            <th>Time</th>
+            <th>Comment</th>
+            </thead>
+            <tbody></tbody>
+            </table>
+        <div class="table-header">复审结果</div>
+            <table id="reviewlist2" class="display" style="width: 100%;">
+            <thead>
+            <th>Result</th>
+            <th>Reviewer</th>
+            <th>Time</th>
+            <th>Comment</th>
+            </thead>
+            <tbody></tbody>
+            </table>
+    </div>
+    </div>
+    <div v-if="permission.review">
+    <div class="reviewbox">
+                    <el-row>
+                <div class="el-form-item__label">是否通过</div>
+                          <el-select v-model="comment.value" placeholder="请选择">
+    <el-option
+      :key="1"
+      label="是"
+      :value="true">
+    </el-option>
+      <el-option
+      :key="0"
+      label="否"
+      :value="false">
+    </el-option>
+  </el-select>
+                         <el-row>
+                        <el-row>
+                <div class="el-form-item__label">审核意见</div>
+                <el-input
+                        type="textarea"
+                        :rows="10"
+                        placeholder="请输入内容"
+                        v-model="comment.text">
+                </el-input>
+            </el-row>
+ <el-row>
+                            <div class="button-box">
+
+
+                            <button v-on:click="review()" class="el-button">Commit</button>
+                    </div>
+        </el-row>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static "table.css" %}">
+
+<script src="{% static "navigation.js" %}"></script>
+<script src="{% static "form.js" %}"></script>
+    <script src="{% static "review_list.js" %}"></script>
+<script type="module">
+
+    var app = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            message: 'Hello Vue!',
+            permission:{{ permission|safe }},
+            user_data:{
+            user: {{user_info|safe}},
+            school: {
+                name: "南京医科大学"
+            },
+            province: {
+                name: "江苏省"
+            }
+            },
+            ethic_form_data:{{ form_data|safe }},
+            uid:{{ uid }},
+            status:{{ status }},
+            page_header:"{{ page_header }}",
+            comment:{
+                text:"",
+                valye:"",
+            },
+        },
+        mounted:function(){
+            if (!this.canedit()) {
+            this.$refs.form.set_readonly()}
+            if (this.permission.showreview){
+                fetches(this.uid)
+            }
+        },
+        methods: {
+             getCookie (name) {
+              var value = '; ' + document.cookie;
+              var parts = value.split('; ' + name + '=')
+              if (parts.length === 2) return parts.pop().split(';').shift()
+            },
+            canedit(){
+                return this.permission.edit
+            },
+            title(){
+                if ( this.permission.edit){
+                    return "编辑"
+                } else {
+                    return "查看"
+                }
+            },
+            update(statuscode){
+                var tdata = JSON.stringify(this.$refs.form.ethic_form_data);
+                var payload = {
+                        data:tdata,
+                        status:statuscode,
+                    };
+                $.ajax({
+                    method: 'POST',
+                    url: '/api/v1/update_app/?uid='+this.uid,
+                    contentType:'application/json',
+                    headers:{'X-CSRFToken': this.getCookie('csrftoken')},
+                    data: JSON.stringify(payload),
+                    csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val(),
+                    success:(res)=>{
+                        alert('Success');
+                    }
+                })
+                console.log()
+            },
+             review(){
+                var payload = {
+                        comment:this.comment,
+                    };
+                $.ajax({
+                    method: 'POST',
+                    url: '/api/v1/review_app/?uid='+this.uid,
+                    contentType:'application/json',
+                    headers:{'X-CSRFToken': this.getCookie('csrftoken')},
+                    data: JSON.stringify(payload),
+                    csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val(),
+                    success:(res)=>{
+                        alert('Success');
+                    }
+                })
+                console.log()
+            },
+        },
+    })
+
+
+</script>
+{% endblock %}

@@ -1,10 +1,11 @@
 $.ajaxSettings.async = false;
-$.get('static/form.html',function(html){
+$.get('/static/form.html',function(html){
 Vue.component('ethic-form', {
   delimiters: ['[[', ']]'],
-  data: function () {
-    return {
-            ethic_form_data: {
+              props:{
+      ethic_form_data:{
+          type:Object,
+          default:()=>{return {
                 protocal_title_cn: '',
                 protocal_title_en: '',
                 fund_source_cn: '',
@@ -409,7 +410,11 @@ Vue.component('ethic-form', {
                     text_5_14:'',
 
 
-            },
+            }}
+      },
+    },
+  data: function () {
+    return {
         fileList:[],
         ethic_rules: {
             text: [{required: true, trigger:'blur' }],
@@ -420,6 +425,7 @@ Vue.component('ethic-form', {
             }
         }
   },
+
   template: html,
     methods: {
       removeStaff(item){
@@ -464,7 +470,14 @@ Vue.component('ethic-form', {
                         email:'',
               key: Date.now()
           });
-      }
+      },
+        set_readonly(){
+            $(this.$el).find('input').attr('disabled',true)
+            $(this.$el).find('.el-input__prefix').remove()
+            $(this.$el).find('.el-el-input__suffix').remove()
+            $(this.$el).find('.el-button').remove()
+            $(this.$el).find('textarea').attr('disabled',true)
+        }
     }
 });
 })

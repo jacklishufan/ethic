@@ -1,0 +1,92 @@
+.login-box {
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 420px;
+    height: 300px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.login-input-box{
+    margin-top: 12px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+.login-input-box input{
+    width: 340px;
+    height: 32px;
+    margin-left: 18px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding-left: 42px;
+}
+
+.login-button-box{
+    margin-top: 12px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+.login-remember{
+    margin-top: 12px;
+    width: 100%;
+    margin-left: 18px;
+    margin-right: auto;
+    display: inline-block;
+}
+.login-input-box .icon{
+    width: 24px;
+    height: 24px;
+    margin: 8px 6px 6px 24px;
+    color: gray;
+    font-size: 20px;
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    vertical-align: center;
+    border-right: 1px solid #dcdcdc;
+}
+.login-button-box button{
+    background-color: navy;
+    color: #ffffff;
+    font-size: 16px;
+    width: 386px;
+    height: 40px;
+    margin-left: 18px;
+    border: 1px solid navy;
+    border-radius: 4px;
+}
+
+.login-button-box button:hover{
+    background-color: blue;
+}
+
+.login-button-box button:hover{
+    background-color: blue;
+}
+
+
+.login-input-box input:hover{
+    border: 1px solid blue;
+}
+
+.login-input-box input:after{
+    border: 1px solid blue;
+}
+
+.errorbox {
+    margin-top: 12px;
+    width: 100%;
+    margin-left: 18px;
+    margin-right: auto;
+    display: inline-block;
+    color: red;
+}

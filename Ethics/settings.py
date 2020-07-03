@@ -26,8 +26,9 @@ SECRET_KEY = 'bzc6%p3&fk#23z#^qcqhv4#lemet6$9h(m9o)@i&dus%w^^co@'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+REST_FRAMEWORK = {
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S"
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_api',
+    'rest_framework'
 ]
 
 AUTH_USER_MODEL = 'rest_api.User'
@@ -117,7 +119,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+LOGIN_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
